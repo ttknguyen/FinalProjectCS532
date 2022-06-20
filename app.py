@@ -8,7 +8,7 @@ from datetime import datetime
 from flask import Flask, request
 from pathlib import Path
 from flask_cors import CORS, cross_origin
-from flask_ngrok import run_with_ngrok
+# from flask_ngrok import run_with_ngrok
 from retrieval_model import load_features, load_corpus, method_0, method_1, method_2, load_methods
 from argparse import ArgumentParser 
 
@@ -66,11 +66,11 @@ if __name__=="__main__":
     parser = ArgumentParser(description='Server')
     parser.add_argument('-ng','--ngrok',default=0,  
                         metavar='NGROK', help='Expose local web server to the internet with ngrok')
-    parser.add_argument('-r','--root',default='/content/CS336.M11.KHCL/',  
+    parser.add_argument('-r','--root',default='/',  
                         metavar='ROOT', help='Path to your root folder of project')
-    parser.add_argument('-pd','--path_data',default='/content/CS336.M11.KHCL/data/', 
+    parser.add_argument('-pd','--path_data',default='/dataset/images', 
                         metavar='PATHDATA', help='Path to your dataset')
-    parser.add_argument('-pc','--path_corpus',default='/content/CS336.M11.KHCL/data/test/oxford5k/jpg/', 
+    parser.add_argument('-pc','--path_corpus',default='/database/images/', 
                         metavar='PATHCORPUS', help='Path to your images database, use for return image')
 
     args = parser.parse_args()  
@@ -79,7 +79,7 @@ if __name__=="__main__":
     fe_method0, fe_method1, fe_method2 = load_features(args.path_data, corpus)
     model, delf = load_methods(args.root)
 
-    if str(args.ngrok) == '1':
-        run_with_ngrok(app)
-        print('ngrok')
+    # if str(args.ngrok) == '1':
+    #     run_with_ngrok(app)
+    #     print('ngrok')
     app.run()
