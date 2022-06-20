@@ -75,8 +75,8 @@ if __name__=="__main__":
     args = parser.parse_args()  
 
     corpus = load_corpus(args.path_corpus)
-    #fe_method0, fe_method1 = load_features('d:/University/CS532.M21.KHCL/FinalProjectCS532/data/', corpus)
-    fe_method0 = load_features('d:/University/CS532.M21.KHCL/FinalProjectCS532/data/', corpus)
+    fe_method0, fe_method1 = load_features('d:/University/CS532.M21.KHCL/FinalProjectCS532/data/', corpus)
+    #fe_method0 = load_features('d:/University/CS532.M21.KHCL/FinalProjectCS532/data/', corpus)
     model = load_methods(args.root)
 
     # if str(args.ngrok) == '1':

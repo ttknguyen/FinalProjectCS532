@@ -1,0 +1,11 @@
+Subject: Computer Vision in Human-Computer Interaction
+Class: CS532.M21.KHCL
+Lecturer: Do Van Tien
+Students:
+	Thai Tran Khanh Nguyen - 19520188
+	Doan Nguyen Nhat Quang - 19520235
+	Nguyen Pham Vinh Nguyen - 19520186
+	Nguyen Khanh Nhu - 19520209
+
+Source code: https://github.com/ttknguyen/FinalProjectCS532.git
+Link dataset: https://drive.google.com/file/d/19p7L8eHrmjqu-GXHEA6ho0nwFK5Mnwdk/view?usp=sharing
