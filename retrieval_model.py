@@ -7,7 +7,7 @@ from torch.utils.model_zoo import load_url
 from torchvision import transforms
 from tqdm import tqdm
 import tensorflow_hub as hub
-from Module.delf import feature_extraction, match_images, run_delf
+
 from Module.cnnImageRetrievalPytorch import Searching, load_network
 from Module.resnet_image_retrieval import load_model, feature_extraction_resnet, retrieval_resnet
 import numpy as np

@@ -23,6 +23,6 @@ def retrieval_resnet(feature_query, feature_corpus, top = 10):
     results = sorted(cosine_dis.items(), key = lambda kv:(kv[1], kv[0]), reverse=True)
     return results[:top]
 
-def feature_extraction_resnet(model, img, new_width = 256, new_height = 256):
+def feature_extraction_resnet(model, img, new_width = 224, new_height = 224):
   img = np.array(cv.resize(img, (new_width, new_height)))
   return np.array(model.predict(img[None,:,:])).T
