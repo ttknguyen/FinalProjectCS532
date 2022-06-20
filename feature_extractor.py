@@ -7,7 +7,7 @@ from torch.utils.model_zoo import load_url
 from torchvision import transforms
 from tqdm import tqdm
 import tensorflow as tf
-import tensorflow_hub as hub
+# import tensorflow_hub as hub
 
 from Module.cnnImageRetrievalPytorch import Searching, load_network
 from Module.resnet_image_retrieval import load_model, feature_extraction_resnet
@@ -33,9 +33,14 @@ def feature_extraction_method_0(corpus, save_path = "", root = "", model_path = 
     model = load_model()
 
     os.chdir(save_path)
+
     if (os.path.isdir('feature_extraction_method_0') == False):
         os.mkdir('feature_extraction_method_0')
-        os.chdir(save_path + 'feature_extraction_method_0/')
+        # feature_path = os.path.join(save_path + 'feature_extraction_method_0/')
+        # os.chdir(feature_path)
+        print(os.path.join(os.getcwd(), 'feature_extraction_method_0'))
+        os.chdir(os.path.join(os.getcwd(), 'feature_extraction_method_0'))
+
         print("Create feature_extraction_method_0 ...")
         print("Extracting:")
 
@@ -89,9 +94,9 @@ def feature_extraction_method_1(corpus, save_path = "", root = ""):
 
 parser = argparse.ArgumentParser(description='Feature Extraction End2End')
 
-parser.add_argument('--root', '-r', metavar='ROOT', default = '', help='root')
-parser.add_argument('--data_path', '-path_corpus', metavar='PATHCORPUS', default = 'data/test/oxford5k/jpg/', help='path to dataset')
-parser.add_argument('--features_path', '-save_path', metavar='SAVEPATH', default = 'data/', help='path to save features')
+parser.add_argument('--root', '-r', metavar='ROOT', default = '/UIT/CS532/FinalProjectCS532/', help='root')
+parser.add_argument('--data_path', '-path_corpus', metavar='PATHCORPUS', default = 'data/images/', help='path to dataset')
+parser.add_argument('--features_path', '-save_path', metavar='SAVEPATH', default = 'data/features/', help='path to save features')
 parser.add_argument('--method', '-m', metavar='METHOD', default = '0', help='method to extract feature')
 def main():
     args = parser.parse_args()

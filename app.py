@@ -9,7 +9,7 @@ from flask import Flask, request
 from pathlib import Path
 from flask_cors import CORS, cross_origin
 # from flask_ngrok import run_with_ngrok
-from retrieval_model import load_features, load_corpus, method_0, method_1, method_2, load_methods
+from retrieval_model import load_features, load_corpus, method_0, method_1, load_methods
 from argparse import ArgumentParser 
 
 app = Flask(__name__)
@@ -54,8 +54,7 @@ def index():
         results = method_0(query_path, [x1, y1, x2, y2], fe_method0, model)
     elif methodRequest == '1':
         results = method_1(query_path, [x1, y1, x2, y2], fe_method1)
-    elif methodRequest == '2':
-        results = method_2(query_path, [x1, y1, x2, y2], fe_method2, delf, 20)
+
     results = [encode_img(str(args.path_corpus + i)) for i in results]
     response = {'results': results}
     
@@ -64,19 +63,19 @@ def index():
 
 if __name__=="__main__":
     parser = ArgumentParser(description='Server')
-    parser.add_argument('-ng','--ngrok',default=0,  
-                        metavar='NGROK', help='Expose local web server to the internet with ngrok')
-    parser.add_argument('-r','--root',default='/',  
+    # parser.add_argument('-ng','--ngrok',default=0,  
+    #                     metavar='NGROK', help='Expose local web server to the internet with ngrok')
+    parser.add_argument('-r','--root',default='/UIT/CS532/FinalProjectCS532/',  
                         metavar='ROOT', help='Path to your root folder of project')
-    parser.add_argument('-pd','--path_data',default='/dataset/images', 
-                        metavar='PATHDATA', help='Path to your dataset')
-    parser.add_argument('-pc','--path_corpus',default='/database/images/', 
+    # parser.add_argument('-pd','--path_data',default='/data/images/', 
+    #                     metavar='PATHDATA', help='Path to your dataset')
+    parser.add_argument('-pc','--path_corpus',default='data/images/', 
                         metavar='PATHCORPUS', help='Path to your images database, use for return image')
 
     args = parser.parse_args()  
 
     corpus = load_corpus(args.path_corpus)
-    fe_method0, fe_method1, fe_method2 = load_features(args.path_data, corpus)
+    fe_method0, fe_method1 = load_features(args.path_corpus, corpus)
     model, delf = load_methods(args.root)
 
     # if str(args.ngrok) == '1':

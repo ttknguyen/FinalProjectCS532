@@ -6,7 +6,7 @@ from cirtorch.utils.general import get_data_root
 from torch.utils.model_zoo import load_url
 from torchvision import transforms
 from tqdm import tqdm
-import tensorflow_hub as hub
+# import tensorflow_hub as hub
 
 from Module.cnnImageRetrievalPytorch import Searching, load_network
 from Module.resnet_image_retrieval import load_model, feature_extraction_resnet, retrieval_resnet
@@ -75,17 +75,17 @@ def method_0(query_path, bbx, feature_corpus, model):
 
 def main():
     print("Enter Corpus path:", end = " ")  
-    path_corpus = '/content/CS336.M11.KHCL/data/test/oxford5k/jpg/' #input()
+    path_corpus = '/UIT/CS532/FinalProjectCS532/data/images/' #input()
     corpus = load_corpus(path_corpus)    
 
     # Load Corpus's feature extracted
     print("Enter Feature path:", end = " ")
     
-    path = '/content/CS336.M11.KHCL/data/'  #input()
+    path = '/UIT/CS532/FinalProjectCS532/data/features/'  #input()
     fe_method0, fe_method1 = load_features(path, corpus)
 
     print("Enter root:", end = " ")
-    root = '/content/CS336.M11.KHCL/' #input()
+    root = '/UIT/CS532/FinalProjectCS532/' #input()
     model, delf = load_methods(root)
 
     key = 1
