@@ -43,31 +43,14 @@ def load_features(path, corpus):
             pbar.update(1)
     print(">>> Sucess...")
     print('__________________________\n')
-
-    feature_method_2 = {}
-    print("Loading Feature method 2...")
-    with tqdm(total=len(corpus)) as pbar:
-        for img in corpus:
-            loc = np.load(path + 'feature_extraction_method_2/' +img[:-4] + '_loc.npy')
-            des = np.load(path + 'feature_extraction_method_2/' +img[:-4] + '_des.npy')
-            feature_method_2[img] = [loc, des]
-            pbar.update(1)
-
-    print(">>> Sucess...")
-    print('__________________________\n')
     
-    return feature_method_0, feature_method_1, feature_method_2
+    return feature_method_0, feature_method_1
 
 def load_methods(root):
     os.chdir(root)
     #Method 0
-    model = load_model('data/networks/')
-
-
-    #Method 2
-    delf = hub.load('https://tfhub.dev/google/delf/1').signatures['default']
-
-    return model, delf
+    model = load_model()
+    return model
 
 def method_1(query_path, bbx, feature_corpus):
     net, transform, ms = load_network()

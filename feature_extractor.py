@@ -30,7 +30,7 @@ def load_corpus(path):
   
 def feature_extraction_method_0(corpus, save_path = "", root = "", model_path = ''):
     os.chdir(model_path)
-    model = load_model('data/networks/')
+    model = load_model()
 
     os.chdir(save_path)
     if (os.path.isdir('feature_extraction_method_0') == False):
