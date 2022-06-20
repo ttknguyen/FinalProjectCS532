@@ -7,9 +7,11 @@ import os
 
 from numpy.linalg import norm
 from numpy import dot
+from tensorflow.keras.models import Model
 
-def load_model(path):
-  model = keras.models.load_model(path + 'model_resnet.h5')
+def load_model():
+  base_model = tf.keras.applications.resnet.ResNet152(weights='imagenet')
+  model = Model(inputs=base_model.input, outputs=base_model.get_layer('avg_pool').output)
   return model
 
 def retrieval_resnet(feature_query, feature_corpus, top = 10):
