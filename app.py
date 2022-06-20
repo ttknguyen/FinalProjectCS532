@@ -63,20 +63,21 @@ def index():
 
 if __name__=="__main__":
     parser = ArgumentParser(description='Server')
-    # parser.add_argument('-ng','--ngrok',default=0,  
-    #                     metavar='NGROK', help='Expose local web server to the internet with ngrok')
-    parser.add_argument('-r','--root',default='/UIT/CS532/FinalProjectCS532/',  
+    parser.add_argument('-ng','--ngrok',default=0,  
+                        metavar='NGROK', help='Expose local web server to the internet with ngrok')
+    parser.add_argument('-r','--root',default='/',  
                         metavar='ROOT', help='Path to your root folder of project')
-    # parser.add_argument('-pd','--path_data',default='/data/images/', 
-    #                     metavar='PATHDATA', help='Path to your dataset')
-    parser.add_argument('-pc','--path_corpus',default='data/images/', 
+    parser.add_argument('-pd','--path_data',default='/data/dataset/', 
+                        metavar='PATHDATA', help='Path to your dataset')
+    parser.add_argument('-pc','--path_corpus',default='d:/UIT/CS532/FinalProjectCS532/data/dataset/', 
                         metavar='PATHCORPUS', help='Path to your images database, use for return image')
 
     args = parser.parse_args()  
 
     corpus = load_corpus(args.path_corpus)
-    fe_method0, fe_method1 = load_features(args.path_corpus, corpus)
-    model, delf = load_methods(args.root)
+    #fe_method0, fe_method1 = load_features('d:/University/CS532.M21.KHCL/FinalProjectCS532/data/', corpus)
+    fe_method0 = load_features('d:/UIT/CS532/FinalProjectCS532/data/', corpus)
+    model = load_methods(args.root)
 
     # if str(args.ngrok) == '1':
     #     run_with_ngrok(app)

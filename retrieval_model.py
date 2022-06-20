@@ -6,7 +6,7 @@ from cirtorch.utils.general import get_data_root
 from torch.utils.model_zoo import load_url
 from torchvision import transforms
 from tqdm import tqdm
-# import tensorflow_hub as hub
+#import tensorflow_hub as hub
 
 from Module.cnnImageRetrievalPytorch import Searching, load_network
 from Module.resnet_image_retrieval import load_model, feature_extraction_resnet, retrieval_resnet
@@ -35,16 +35,16 @@ def load_features(path, corpus):
     print(">>> Sucess...")
     print('__________________________\n')
 
-    feature_method_1 = {}
-    print("Loading Feature method 1...")
-    with tqdm(total=len(corpus)) as pbar:
-        for img in corpus:
-            feature_method_1[img] = np.load(path + 'feature_extraction_method_1/' +img[:-3] + 'npy')
-            pbar.update(1)
-    print(">>> Sucess...")
-    print('__________________________\n')
+    # feature_method_1 = {}
+    # print("Loading Feature method 1...")
+    # with tqdm(total=len(corpus)) as pbar:
+    #     for img in corpus:
+    #         feature_method_1[img] = np.load(path + 'feature_extraction_method_1/' +img[:-3] + 'npy')
+    #         pbar.update(1)
+    # print(">>> Sucess...")
+    # print('__________________________\n')
     
-    return feature_method_0, feature_method_1
+    return feature_method_0#, feature_method_1
 
 def load_methods(root):
     os.chdir(root)
@@ -75,17 +75,17 @@ def method_0(query_path, bbx, feature_corpus, model):
 
 def main():
     print("Enter Corpus path:", end = " ")  
-    path_corpus = '/UIT/CS532/FinalProjectCS532/data/images/' #input()
+    path_corpus = '/content/CS336.M11.KHCL/data/test/oxford5k/jpg/' #input()
     corpus = load_corpus(path_corpus)    
 
     # Load Corpus's feature extracted
     print("Enter Feature path:", end = " ")
     
-    path = '/UIT/CS532/FinalProjectCS532/data/features/'  #input()
+    path = '/content/CS336.M11.KHCL/data/'  #input()
     fe_method0, fe_method1 = load_features(path, corpus)
 
     print("Enter root:", end = " ")
-    root = '/UIT/CS532/FinalProjectCS532/' #input()
+    root = '/content/CS336.M11.KHCL/' #input()
     model, delf = load_methods(root)
 
     key = 1

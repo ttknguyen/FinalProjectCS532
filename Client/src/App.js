@@ -7,6 +7,8 @@ import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import services from "./service";
 import background from "./assets/background-2.jpg";
+import Popup from 'reactjs-popup';
+
 
 function App() {
   const [srcImg, setSrcImg] = useState(null);
@@ -17,8 +19,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [method, setMethod] = useState("");
-  const [apiHealth, setApiHealth] = useState(false);
-  const [apiUrl, setApiUrl] = useState("");
+  // const [apiHealth, setApiHealth] = useState(false);
+  // const [apiUrl, setApiUrl] = useState("");
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ function App() {
 
     await console.log(req);
 
-    const response = await services.requestToServer(req, apiUrl);
+    const response = await services.requestToServer(req, "http://localhost:5000");
     // await setQueryPath(response.data["query-path"]);
     await setResult(response.data.results);
     await setLoading(false);
@@ -95,6 +97,8 @@ function App() {
           activeKey={tab}
           onSelect={(k) => setTab(k)}
         >
+
+          {/* IMAGE SEARCH */}
           <Tab eventKey="Img" title="Image Search">
             {" "}
             <Form style={{ marginTop:'25px' }}>
@@ -215,6 +219,9 @@ function App() {
             <br />
             <ul>{listResult}</ul>
           </Tab>
+
+
+          {/* TEXT SEARCH */}
           <Tab eventKey="Txt" title="Text Search">
           {" "}
             <Form style={{ marginTop:'25px' }}>
@@ -233,6 +240,54 @@ function App() {
                     type="text"
                   />
                 </div>
+              
+                {/* <Popup
+              trigger={<button className="button"> Open Modal </button>}
+              modal
+              nested
+            >
+              {close => (
+                <div className="modal">
+                  <button className="close" onClick={close}>
+                    &times;
+                  </button>
+                  <div className="header"> Modal Title </div>
+                  <div className="content">
+                    {' '}
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
+                    Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
+                    delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
+                    <br />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
+                    commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
+                    explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
+                  </div>
+                  <div className="actions">
+                    <Popup
+                      trigger={<button className="button"> Trigger </button>}
+                      position="top center"
+                      nested
+                    >
+                      <span>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                        magni omnis delectus nemo, maxime molestiae dolorem numquam
+                        mollitia, voluptate ea, accusamus excepturi deleniti ratione
+                        sapiente! Laudantium, aperiam doloribus. Odit, aut.
+                      </span>
+                    </Popup>
+                    <button
+                      className="button"
+                      onClick={() => {
+                        console.log('modal closed ');
+                        close();
+                      }}
+                    >
+                      close modal
+                    </button>
+                  </div>
+                </div>
+              )}
+            </Popup> */}
 
               </Form.Group>
               <div class="d-flex justify-content-center">
@@ -265,6 +320,7 @@ function App() {
             )}
             <br />
             <br />
+
             <ul>{listResult}</ul>
           </Tab>
         </Tabs>
