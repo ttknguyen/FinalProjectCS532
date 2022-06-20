@@ -1,0 +1,10 @@
+torch
+torchvision
+tensorflow-gpu
+numpy
+pickle-mixin
+tqdm
+opencv-python
+flask-cors
+flask-ngrok
+glob2

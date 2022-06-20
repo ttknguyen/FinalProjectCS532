@@ -7,7 +7,7 @@ from torch.utils.model_zoo import load_url
 from torchvision import transforms
 from tqdm import tqdm
 import tensorflow as tf
-import tensorflow_hub as hub
+#import tensorflow_hub as hub
 
 from Module.cnnImageRetrievalPytorch import Searching, load_network
 from Module.resnet_image_retrieval import load_model, feature_extraction_resnet
@@ -28,27 +28,27 @@ def load_corpus(path):
     print('__________________________')   
     return list_image
   
-def feature_extraction_method_0(corpus, save_path = "", root = "", model_path = ''):
-    os.chdir(model_path)
+def feature_extraction_method_0(corpus, save_path = "", root = "", data_path = ''):
     model = load_model()
 
     os.chdir(save_path)
     if (os.path.isdir('feature_extraction_method_0') == False):
         os.mkdir('feature_extraction_method_0')
-        os.chdir(save_path + 'feature_extraction_method_0/')
+        #os.chdir(save_path + 'feature_extraction_method_0/')
         print("Create feature_extraction_method_0 ...")
         print("Extracting:")
 
     else:
         print("Method 0 is extracted ...")
         return
-
+    os.chdir(root)
+    
     with tqdm(total=len(corpus)) as pbar:
         for img in corpus:
             # Feature extraction
-            image = cv.imread(root + img)
+            image = cv.imread(root + data_path + img)
             feature = feature_extraction_resnet(model, image)
-            np.save(img[:-3] + 'npy', feature)
+            np.save(save_path + 'feature_extraction_method_0/   ' + img[:-3] + 'npy', feature)
             del image
             pbar.update(1)
     del model
@@ -89,8 +89,8 @@ def feature_extraction_method_1(corpus, save_path = "", root = ""):
 
 parser = argparse.ArgumentParser(description='Feature Extraction End2End')
 
-parser.add_argument('--root', '-r', metavar='ROOT', default = '', help='root')
-parser.add_argument('--data_path', '-path_corpus', metavar='PATHCORPUS', default = 'data/test/oxford5k/jpg/', help='path to dataset')
+parser.add_argument('--root', '-r', metavar='ROOT', default = 'd:/University/CS532.M21.KHCL/FinalProjectCS532/', help='root')
+parser.add_argument('--data_path', '-path_corpus', metavar='PATHCORPUS', default = 'data/dataset/', help='path to dataset')
 parser.add_argument('--features_path', '-save_path', metavar='SAVEPATH', default = 'data/', help='path to save features')
 parser.add_argument('--method', '-m', metavar='METHOD', default = '0', help='method to extract feature')
 def main():
@@ -98,9 +98,9 @@ def main():
     corpus = load_corpus(args.data_path)
 
     if (args.method == '0'):
-      feature_extraction_method_0(corpus, args.features_path, args.data_path, args.root)
+      feature_extraction_method_0(corpus,args.root + args.features_path, args.root, args.data_path)
     elif (args.method == '1'):
-      feature_extraction_method_1(corpus, args.features_path, args.data_path)
+      feature_extraction_method_1(corpus,args.root + args.features_path, args.data_path)
 
 if __name__ == '__main__':
     main()
