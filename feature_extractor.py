@@ -100,7 +100,7 @@ def main():
     if (args.method == '0'):
       feature_extraction_method_0(corpus,args.root + args.features_path, args.root, args.data_path)
     elif (args.method == '1'):
-      feature_extraction_method_1(corpus,args.root + args.features_path, args.data_path)
+      feature_extraction_method_1(corpus,args.root + args.features_path,args.root + args.data_path)
 
 if __name__ == '__main__':
     main()

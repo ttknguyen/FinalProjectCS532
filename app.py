@@ -69,7 +69,7 @@ if __name__=="__main__":
                         metavar='ROOT', help='Path to your root folder of project')
     parser.add_argument('-pd','--path_data',default='/data/dataset/', 
                         metavar='PATHDATA', help='Path to your dataset')
-    parser.add_argument('-pc','--path_corpus',default='d:/UIT/CS532/FinalProjectCS532/data/dataset/', 
+    parser.add_argument('-pc','--path_corpus',default='d:/University/CS532.M21.KHCL/FinalProjectCS532/data/dataset/', 
                         metavar='PATHCORPUS', help='Path to your images database, use for return image')
 
     args = parser.parse_args()  
