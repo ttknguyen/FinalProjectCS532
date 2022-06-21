@@ -35,16 +35,16 @@ def load_features(path, corpus):
     print(">>> Sucess...")
     print('__________________________\n')
 
-    feature_method_1 = {}
-    print("Loading Feature method 1...")
-    with tqdm(total=len(corpus)) as pbar:
-        for img in corpus:
-            feature_method_1[img] = np.load(path + 'feature_extraction_method_1/' +img[:-3] + 'npy')
-            pbar.update(1)
-    print(">>> Sucess...")
-    print('__________________________\n')
+    # feature_method_1 = {}
+    # print("Loading Feature method 1...")
+    # with tqdm(total=len(corpus)) as pbar:
+    #     for img in corpus:
+    #         feature_method_1[img] = np.load(path + 'feature_extraction_method_1/' +img[:-3] + 'npy')
+    #         pbar.update(1)
+    # print(">>> Sucess...")
+    # print('__________________________\n')
     
-    return feature_method_0, feature_method_1
+    return feature_method_0#, feature_method_1
 
 def load_methods(root):
     os.chdir(root)

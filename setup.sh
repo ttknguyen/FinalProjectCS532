@@ -5,7 +5,7 @@ rm dataset.zip
 
 # install librabries
 pip install flask-cors
-# pip install flask-ngrok
+# pip install flask-ngrok  Not nessary for running on local host
 
 # install ngrok token
 curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz -o ngrok.tgz

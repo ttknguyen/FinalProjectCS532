@@ -48,7 +48,7 @@ def feature_extraction_method_0(corpus, save_path = "", root = "", data_path = '
             # Feature extraction
             image = cv.imread(root + data_path + img)
             feature = feature_extraction_resnet(model, image)
-            np.save(save_path + 'feature_extraction_method_0/   ' + img[:-3] + 'npy', feature)
+            np.save(save_path + 'feature_extraction_method_0/' + img[:-3] + 'npy', feature)
             del image
             pbar.update(1)
     del model

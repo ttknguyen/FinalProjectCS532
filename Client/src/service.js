@@ -15,18 +15,18 @@ const requestToServer = async (req, baseUrl) => {
   return response;
 };
 
-const checkHeathApi = async (baseUrl) => {
-  try {
-    const response = await axios.get(baseUrl);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+// const checkHeathApi = async (baseUrl) => {
+//   try {
+//     const response = await axios.get(baseUrl);
+//     return true;
+//   } catch (error) {
+//     return false;
+//   }
+// };
 
 const services = {
   requestToServer,
-  checkHeathApi,
+  // checkHeathApi,
 };
 
 export default services;
